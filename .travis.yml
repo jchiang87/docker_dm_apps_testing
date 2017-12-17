@@ -1,0 +1,31 @@
+language: python
+
+sudo: required
+
+env:
+  - OS_TYPE=centos OS_VERSION=7
+
+services:
+  - docker
+
+before_install:
+  - sudo apt-get update
+  - echo 'DOCKER_OPTS="-H tcp://127.0.0.1:2375 -H unix:///var/run/docker.sock -s devicemapper"' | sudo tee /etc/default/docker > /dev/null
+  - sudo service docker restart
+  - sleep 5
+  - sudo docker pull lsstsqre/centos:7-stack-lsst_distrib-v13_0
+
+install:
+  - travis_wait docker run -ti lsstsqre/centos:7-stack-lsst_distrib-v13_0
+  - . /opt/lsst/software/stack/loadLSST.bash
+  - setup lsst_distrib
+#  - pip install coveralls
+  - eups declare -r . apps_test -t current
+  - setup apps_test
+  - scons
+
+script:
+  - nosetests
+
+after_success:
+  - coveralls
