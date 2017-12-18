@@ -14,6 +14,10 @@ install:
   - sudo service docker restart
   - sleep 5
   - sudo docker pull lsstsqre/centos:7-stack-lsst_distrib-v13_0
+  - pip install coveralls
 
 script:
-  - docker run -v `pwd`:/home/apps_test lsstsqre/centos:7-stack-lsst_distrib-v13_0 /home/apps_test/travis_test.sh
+  - docker run -v `pwd`:/home/vagrant/apps_test lsstsqre/centos:7-stack-lsst_distrib-v13_0 /home/vagrant/apps_test/travis_test.sh
+
+after_success:
+  - coveralls
