@@ -7,5 +7,7 @@ setup apps_test
 ls
 cd /home/vagrant/apps_test
 ls
+whoami
 nosetests
+setenforce 0
 touch foo
