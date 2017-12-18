@@ -6,4 +6,3 @@ eups declare apps_test -r /home/vagrant/apps_test -t current
 setup apps_test
 cd /home/vagrant/apps_test
 nosetests
-touch foo
