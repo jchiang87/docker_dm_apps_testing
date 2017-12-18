@@ -1,5 +1,7 @@
 language: python
 
+group: deprecated-2017Q2
+
 sudo: required
 
 env:
