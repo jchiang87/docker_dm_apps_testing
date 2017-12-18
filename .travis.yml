@@ -8,17 +8,12 @@ env:
 services:
   - docker
 
-before_install:
+install:
   - sudo apt-get update
   - echo 'DOCKER_OPTS="-H tcp://127.0.0.1:2375 -H unix:///var/run/docker.sock -s devicemapper"' | sudo tee /etc/default/docker > /dev/null
   - sudo service docker restart
   - sleep 5
   - sudo docker pull lsstsqre/centos:7-stack-lsst_distrib-v13_0
 
-install:
-  - pwd
-  - ls
-  - docker run -v `pwd`:/home/apps_test lsstsqre/centos:7-stack-lsst_distrib-v13_0 /home/apps_test/travis_test.sh
-
 script:
-  - nosetests
+  - docker run -v `pwd`:/home/apps_test lsstsqre/centos:7-stack-lsst_distrib-v13_0 /home/apps_test/travis_test.sh
