@@ -19,3 +19,6 @@ install:
 script:
   - sudo chown -R 1000:1000 .
   - docker run -v `pwd`:/home/vagrant/apps_test lsstsqre/centos:7-stack-lsst_distrib-v13_0 /home/vagrant/apps_test/travis_test.sh
+
+after_success:
+  - coveralls

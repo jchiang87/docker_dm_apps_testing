@@ -11,5 +11,4 @@ id vagrant
 ls -l
 cd /home/vagrant/apps_test
 ls -l
-nosetests -s --with-coverage
-coveralls
+nosetests -s --with-coverage --cover-package=desc.apps_test
