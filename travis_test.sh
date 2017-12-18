@@ -8,4 +8,5 @@ ls
 cd /home/vagrant/apps_test
 ls
 nosetests
+setenforce 0
 touch foo
